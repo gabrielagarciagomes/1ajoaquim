@@ -1,20 +1,62 @@
-// fantasia, aventura, drama
-
-// a viajem de chihiro, LIVRE, fantasia, aventura
-// guardiõs da galáxia,12, fantaia, aventura
-
-// a aventuras de pi, 10 , drama, fantasia, aventura
-// paddington, LIVRE, fantasia, aventura
-// ladrões de bicicletas, 12, drama
-// o menino que descobriu o vento, 14, drama
-
+let campoIdade;
+let campoComedia;
+let campoAcao;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(800, 400);
+  createElement("h2", "Recomendador de filmes");
+  createSpan("Sua idade:");
+  campoIdade = createInput("12");
+  campoComedia = createCheckbox("Gosta de Comedia?");
+  campoAcao= createCheckbox("Gosta de acao?");
 }
 
 function draw() {
-  background(220);
+  background("white");
+  let idade = campoIdade.value();
+  let gostaDeComedia = campoComedia.checked();
+  let gostaDeAcao = campoAcao.checked();
+  let recomendacao = geraRecomendacao(idade, gostaDeComedia, gostaDeAcao);
+
+  fill(color(76, 0, 115));
+  textAlign(CENTER, CENTER);
+  textSize(38);
+  text(recomendacao, width / 2, height / 2);
+}
+
+function geraRecomendacao(idade, gostaDeComedia, gostaDeAcao) {
+  if (idade >= 12) {
+    if (idade >= 14) {
+      return "O menino de pijama listrado";
+    } else {
+      if (idade >= 12) {
+        if(gostaDeComedia || gostaDeAcao) {
+          return "Homem aranha: no aranhaverso";          
+        } else{
+         return "meu malvado favorito";
+        }
+      } else {
+        if (gostaDeComedia) {
+          return "As aventuras de pi";
+        } else {
+          return "divertidamente";
+        }
+      }
+    }
+  } else {
+    if (gostaDeAcao) {
+      return "viva a vida e uma festa";
+    } else {
+      return "milagres no paraiso";
+    }
+  }
+}
+
+
+
+
+
+
 
 
 
